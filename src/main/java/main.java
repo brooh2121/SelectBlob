@@ -10,9 +10,9 @@ public class main {
 
     public static void main (String [] args) {
 
-        String url = "URL";
-        String login = "LOGIN";
-        String pass = "PASS";
+        String url = "jdbc:oracle:thin:@172.19.23.24:1521:rsadb2";
+        String login = "rsa_eosago";
+        String pass = "soP63KgoHhwZ2KtrA";
         String xmlString;
         try {
 
@@ -20,9 +20,9 @@ public class main {
             Statement stmt = con.createStatement();
             ResultSet rs;
 
-            rs = stmt.executeQuery("SELECT INS_REQ_JOUR_ID,REQ_BODY FROM INS_REQUEST_JOUR WHERE INS_REQ_JOUR_ID = 1873581991");
+            rs = stmt.executeQuery("SELECT INS_REQ_JOUR_ID,REQ_BODY FROM INS_REQUEST_JOUR WHERE INS_REQ_JOUR_ID = 2714017050");
             while(rs.next()) {
-                int id = rs.getInt(1);
+                Long id = rs.getLong(1);
                 Blob blob = rs.getBlob(2);
                 byte[] buffer = blob.getBytes(1L,(int)blob.length());
                 xmlString = IOUtils.toString(new GZIPInputStream(new ByteArrayInputStream(buffer)),"UTF-8");
